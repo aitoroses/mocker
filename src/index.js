@@ -6,6 +6,7 @@ export Condition from './types/Condition'
 export Static from './types/Static'
 export HasOne from './types/HasOne'
 export HasMany from './types/HasMany'
+export {injector} from './injector'
 
 import Mocker from './Mocker'
 import Database from './Database'
