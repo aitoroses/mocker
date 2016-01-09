@@ -1,5 +1,6 @@
 
 export Plugin from './types/Plugin'
+export Incremental from './types/Incremental'
 export Faker from './types/Faker'
 export Computed from './types/Computed'
 export Condition from './types/Condition'

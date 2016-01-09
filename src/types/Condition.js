@@ -13,7 +13,7 @@ export default class Condition extends Plugin {
   }
 
   run(instance) {
-    if (this.condFn()) {
+    if (this.condFn.call(instance)) {
       if (typeof this.type.run == "function") {
         return this.type.run(instance)
       } else {
