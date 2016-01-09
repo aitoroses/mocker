@@ -2,10 +2,12 @@ import Plugin from './Plugin'
 
 let id = 0
 
-class Incremental extends Plugin {
+export class Incremental extends Plugin {
   run() {
     return id++;
   }
 }
 
-export default Incremental
+export default function incremental() {
+  return new Incremental()
+}

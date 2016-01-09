@@ -1,6 +1,6 @@
 import Plugin from './Plugin'
 
-export default class HasOne extends Plugin {
+export class HasOne extends Plugin {
   constructor(model) {
     super()
     this.model = model
@@ -10,4 +10,8 @@ export default class HasOne extends Plugin {
     const index = Math.round(Math.random() * (instances.length - 1))
     return instances[index]
   }
+}
+
+export default function hasOne(a) {
+  return new HasOne(a);
 }

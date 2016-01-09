@@ -1,10 +1,10 @@
-import faker from 'faker'
+import fakerjs from 'faker'
 import Plugin from './Plugin'
 
 // prop :: String -> Object -> Any
 import {prop} from 'freshman'
 
-export default class Faker extends Plugin {
+export class Faker extends Plugin {
 
   constructor(generator) {
     super()
@@ -17,7 +17,11 @@ export default class Faker extends Plugin {
 
   run() {
     let paths = this.value.split('.')
-    let fake = paths.reduce((acc, p) => prop(p, acc), faker)
+    let fake = paths.reduce((acc, p) => prop(p, acc), fakerjs)
     return fake()
   }
+}
+
+export default function faker(a) {
+  return new Faker(a);
 }

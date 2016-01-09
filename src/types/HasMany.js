@@ -2,7 +2,7 @@ import Plugin from './Plugin'
 
 import {range} from 'freshman'
 
-export default class HasMany extends Plugin {
+export class HasMany extends Plugin {
   constructor(model, count) {
     super()
     this.model = model
@@ -19,4 +19,8 @@ export default class HasMany extends Plugin {
     const instances = this.db.get(this.model.name)
     return range(0, this.count).map(() => this.getRandom(instances))
   }
+}
+
+export default function hasMany(a, b) {
+  return new HasMany(a, b);
 }

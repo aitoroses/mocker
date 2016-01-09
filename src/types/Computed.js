@@ -1,6 +1,6 @@
 import Plugin from './Plugin'
 
-export default class Computed extends Plugin {
+export class Computed extends Plugin {
 
   constructor(fn) {
     super()
@@ -14,4 +14,8 @@ export default class Computed extends Plugin {
   run(instance) {
     return this.fn.call(instance, this.db)
   }
+}
+
+export default function computed(a) {
+  return new Computed(a)
 }

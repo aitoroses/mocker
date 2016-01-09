@@ -1,6 +1,6 @@
 import Plugin from './Plugin'
 
-export default class Condition extends Plugin {
+export class Condition extends Plugin {
 
   constructor(condFn, type) {
     super()
@@ -23,4 +23,8 @@ export default class Condition extends Plugin {
       return null
     }
   }
+}
+
+export default function condition(a, b) {
+  return new Condition(a, b)
 }

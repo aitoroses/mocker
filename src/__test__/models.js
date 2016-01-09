@@ -1,25 +1,33 @@
-import {Incremental, Faker, Computed, Condition, Static, HasOne, HasMany} from '..'
+import {
+  incremental,
+  faker,
+  computed,
+  condition,
+  value,
+  hasOne,
+  hasMany
+} from '..'
 
 export class User {
   static virtuals = ["computedVirtual"];
 
-  _id = new Incremental();
-  computedVirtual = new Computed(() => "computedVirtual");
-  condition_1 = new Condition(() => false, new Static(1));
-  condition_2 = new Condition(() => true, new Static(1));
-  condition_3 = new Condition(() => true, new Faker('internet.email'));
-  computed1 = new Computed(db =>  "myComputedProp1");
-  uid = new Faker('internet.email');
-  name = new Static("foo");
+  _id = incremental();
+  computedVirtual = computed(() => "computedVirtual");
+  condition_1 = condition(() => false, value(1));
+  condition_2 = condition(() => true, value(1));
+  condition_3 = condition(() => true, faker('internet.email'));
+  computed1 = computed(db =>  "myComputedProp1");
+  uid = faker('internet.email');
+  name = value("foo");
   thing = {
-    foo: new Static("bar")
+    foo: value("bar")
   };
 }
 
 export class Request {
   static virtuals = ["user"];
 
-  userCollection = new HasMany(User, 2);
-  user = new HasOne(User);
-  creator = new Computed(function(db) { return this.user.name});
+  userCollection = hasMany(User, 2);
+  user = hasOne(User);
+  creator = computed(function(db) { return this.user.name});
 }
