@@ -1,13 +1,19 @@
 import Plugin from './Plugin'
 
-let id = 0
+let idNamespaces = {}
 
 export class Incremental extends Plugin {
+  constructor(namespace) {
+    super()
+    this.namespace = namespace || "@@default"
+    let value = idNamespaces[this.namespace] || 0
+    idNamespaces[this.namespace] = value
+  }
   run() {
-    return id++;
+    return idNamespaces[this.namespace]++
   }
 }
 
-export default function incremental() {
-  return new Incremental()
+export default function incremental(a) {
+  return new Incremental(a)
 }
