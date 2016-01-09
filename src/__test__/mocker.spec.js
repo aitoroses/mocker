@@ -1,15 +1,16 @@
 import {mocker} from '../'
-import {User} from './models'
-import Static from '../types/Static'
+import {User, Request} from './models'
 
 describe('Mocker2', () => {
   it("should be awesome", () => {
 
-    let m = mocker
-      .schema(User, 100)
+    const m = mocker
+      .schema(User, 10)
+      .schema(Request, 1)
       .build()
 
-    console.log(m)
+    const result = m.db.get('Request')[0]
+    console.log(JSON.stringify(result, null, '  '))
 
   })
 })

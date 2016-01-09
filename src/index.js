@@ -2,89 +2,17 @@
 export Plugin from './types/Plugin'
 export Faker from './types/Faker'
 export Computed from './types/Computed'
+export Condition from './types/Condition'
 export Static from './types/Static'
+export HasOne from './types/HasOne'
+export HasMany from './types/HasMany'
 
-import {compose, range} from 'freshman'
+import Mocker from './Mocker'
+import Database from './Database'
 
-class Generator {
-  constructor(Model, count) {
-    this.type = Model.name
-    this.model = Model
-    this.count = count
-  }
-}
+import {injector} from './injector'
 
-// generateDescriptor :: GeneratorType -> Model
-const generateDescriptor = (db, gen) => new gen.model(db)
+injector.service('Database', Database)
+injector.service('Mocker', Mocker, 'Database')
 
-// processLeaf :: LeafNode -> Database -> Object
-const processLeaf = l => l.run()
-
-// processDescriptor :: Model -> ProcessedObject
-const processDescriptor = (d) => {
-  return Object.keys(d).reduce((acc, k) => {
-    let obj = d[k]
-
-    // Process a complex object recursively
-    function recursiveCall(obj) {
-      if (obj.run) {
-        return processLeaf(obj)
-      } else if(typeof obj == "object") {
-        return Object.keys(obj).reduce((acc, k) => {
-          acc[k] = recursiveCall(obj[k])
-          return acc;
-        }, {});
-      }
-    }
-
-    acc[k] = recursiveCall(obj)
-    return acc
-  }, {})
-}
-
-const cleanVirtuals = (descriptor, instance) => {
-  let virtuals = descriptor.constructor.virtuals
-  virtuals.forEach(k => delete instance[k])
-}
-
-class Mocker {
-
-  schemas = [];
-
-  reset() {
-    this.schemas = []
-  }
-
-  schema(Model, count) {
-    this.schemas.push(new Generator(Model, count))
-    return this
-  }
-
-  getDescriptors() {
-    return this.schemas.reduce((acc, schema) => {
-      let desc = generateDescriptor(acc, schema)
-      acc[schema.type] = desc
-      return acc
-    }, {})
-  }
-
-  build() {
-    return this.schemas.reduce((acc, schema) => {
-
-      // Generate a descriptor for schema
-      let desc = generateDescriptor(acc, schema)
-
-      // Generate instances from descriptor
-      let instances = range(0, schema.count)
-        .map(() => processDescriptor(desc))
-
-      // Clean
-      instances.forEach(x => cleanVirtuals(desc, x))
-
-      acc[schema.type] = instances
-      return acc
-    }, {})
-  }
-}
-
-export const mocker = new Mocker()
+export const mocker = injector.container.Mocker
