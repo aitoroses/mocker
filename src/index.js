@@ -2,11 +2,13 @@
 export Plugin from './types/Plugin'
 export incremental from './types/Incremental'
 export faker from './types/Faker'
+export chance from './types/Chance'
 export computed from './types/Computed'
 export condition from './types/Condition'
 export value from './types/Value'
 export hasOne from './types/HasOne'
 export hasMany from './types/HasMany'
+export array from './types/Array'
 export {injector} from './injector'
 
 import Mocker from './Mocker'
