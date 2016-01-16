@@ -1,5 +1,5 @@
 import {mocker} from '../'
-import {User, Request} from './models'
+import {User, Property} from './models'
 
 import Application from './umm/Application'
 
@@ -7,12 +7,10 @@ describe('Mocker2', () => {
   it("should be awesome", () => {
 
     const m = mocker
-      .schema(Application, 1)
-      // .schema(User, 20)
-      // .schema(Request, 1)
+      .schema(User, 20)
       .build()
 
-    const result = m.db.get()
+    const result = m.db.get('User')
     console.log(JSON.stringify(result, null, '  '))
 
   })
