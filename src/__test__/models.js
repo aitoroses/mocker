@@ -1,11 +1,13 @@
 import {
   incremental,
   faker,
+  chance,
   computed,
   condition,
   value,
   hasOne,
-  hasMany
+  hasMany,
+  array
 } from '..'
 
 // export class User {
@@ -31,6 +33,10 @@ import {
 //   userCollection = hasMany(User, 2);
 //   user = hasOne(User);
 //   creator = computed(function(db) { return this.user.name});
+//   creator = array(computed(function(db) { return this.user.name}), 10);
+//   creator2 = array(computed(function(db) { return this.user.name}), 10, true);
+//   emails = array(faker('internet.email'), 2);
+//   number = chance('integer');
 // }
 
 
@@ -41,7 +47,6 @@ export class User {
   _firstName = faker('name.firstName');
   _lastName = faker('name.lastName');
   _uid = computed(function() {return (this._lastName.slice(0,5) + this._firstName.slice(0,2) + "1").toLowerCase()});
-
 
   properties = {
     value: value(1),
