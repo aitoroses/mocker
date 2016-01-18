@@ -4,6 +4,8 @@
     "stage-0"
   ],
   "plugins": [
-    "transform-decorators-legacy"
+    "angular2-annotations",
+    "transform-decorators-legacy",
+    "transform-flow-strip-types"
   ]
 }

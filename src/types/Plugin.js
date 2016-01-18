@@ -1,9 +1,10 @@
-import {injector} from '../injector'
+import {injector} from '../'
+import Database from '../Database'
 
 export default class Plugin {
   constructor() {
 
-    const db = injector.container.Database
+    const db = injector.get(Database)
     if (!db) throw Error('Plugin was not able to find a Database instance')
     this.db = db
 

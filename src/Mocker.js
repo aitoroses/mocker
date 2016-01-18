@@ -1,6 +1,8 @@
 import {compose, range} from 'freshman'
 import Config from './Config'
 
+import Database from './Database'
+
 // generateDescriptor :: ConfigType -> Model
 const generateDescriptor = (db, gen) => new gen.model(db)
 
@@ -37,7 +39,7 @@ const cleanVirtuals = (descriptor, instance) => {
 
 export default class Mocker {
 
-  constructor(db) {
+  constructor(db: Database) {
     this.db = db
   }
 

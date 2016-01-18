@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/injector.js"],"names":[],"mappings":";;;;;;;;;;;;;;AAGO,IAAM,QAAQ,WAAR,QAAQ,GAAG,wBAAY,CAAA","file":"injector.js","sourcesContent":["import Bottle from 'bottlejs'\n\n// This creates a dependency injector instance\nexport const injector = new Bottle()\n"]}
