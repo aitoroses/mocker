@@ -5,15 +5,15 @@ let databaseSymbol = Symbol('database')
 
 export default class Database {
   constructor() {
-    this[databaseSymbol] = {}
+    this[databaseSymbol] = new Map
   }
 
-  get(coll) {
+  get(Model) {
     let s = this[databaseSymbol]
-    return coll ? s[coll] : s
+    return Model ? s.get(Model) : s
   }
 
-  newCollection(name, data) {
-    this.get()[name] = data
+  newCollection(Model, data) {
+    this.get().set(Model, data)
   }
 }

@@ -6,7 +6,7 @@ export class HasOne extends Plugin {
     this.model = model
   }
   run() {
-    const instances = this.db.get(this.model.name)
+    const instances = this.db.get(this.model)
     const index = Math.round(Math.random() * (instances.length - 1))
     return instances[index]
   }

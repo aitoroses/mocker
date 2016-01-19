@@ -57,7 +57,7 @@ export default class Mocker {
   getDescriptors() {
     return this.schemas.reduce((acc, schema) => {
       let desc = generateDescriptor(acc, schema)
-      acc.newCollection(schema.type, desc)
+      acc.newCollection(schema.model, desc)
       return acc
     }, this.db)
   }
@@ -76,7 +76,7 @@ export default class Mocker {
       instances.forEach(x => cleanVirtuals(desc, x))
 
       // Add collection instances to db
-      acc.newCollection(schema.type, instances)
+      acc.newCollection(schema.model, instances)
 
       return acc
     }, this.db)

@@ -1,16 +1,20 @@
+import 'babel-polyfill'
 import {mocker} from '../'
 import {User, Property} from './models'
 
-import Application from './umm/Application'
+import UserUm from './umm/UserUm'
+import OU from './umm/Helper/OU'
 
 describe('Mocker2', () => {
-  it("should be awesome", () => {
+
+  it("should be awesome1", () => {
 
     const m = mocker
-      .schema(User, 20)
+      .schema(OU, 50)
+      .schema(UserUm, 1)
       .build()
 
-    const result = m.db.get('User')
+    const result = m.db.get(UserUm)
     console.log(JSON.stringify(result, null, '  '))
 
   })

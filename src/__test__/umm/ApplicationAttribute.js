@@ -1,12 +1,14 @@
-import { noop } from '..'
+import { noop, faker, value, incremental, weblogic } from '../..'
+
+let w = value('weblogic')
 
 export default class ApplicationAttribute {
   application = noop();
   crTime = noop();
-  createdBy = noop();
+  createdBy = w;
   id = noop();
   lmTime = noop();
   name = noop();
-  updatedBy = noop();
-  description = noop();
+  updatedBy = w;
+  description = faker('lorem.sentence');
 }
