@@ -2,6 +2,8 @@ import {
   incremental,
   faker,
   chance,
+  casual,
+  randexp,
   computed,
   condition,
   value,
@@ -39,7 +41,6 @@ import {
 //   number = chance('integer');
 // }
 
-
 export class User {
   static virtuals = ["_firstName", "_lastName", "_uid"];
 
@@ -49,6 +50,8 @@ export class User {
   _uid = computed(function() {return (this._lastName.slice(0,5) + this._firstName.slice(0,2) + "1").toLowerCase()});
 
   properties = {
+    testCasual: casual('country'),
+    testRandExp: randexp(/hello+ (world|to you)/),
     value: value(1),
     userId: computed(function() {return this._uid}),
     label: (() => {

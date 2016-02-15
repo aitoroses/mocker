@@ -24,9 +24,11 @@
   },
   "dependencies": {
     "angular2-di": "^1.0.0",
+    "casual": "^1.5.1",
     "chance": "^0.8.0",
     "faker": "^3.0.1",
     "freshman": "^0.8.0",
+    "randexp": "^0.4.2",
     "reflect-metadata": "^0.1.3"
   }
 }

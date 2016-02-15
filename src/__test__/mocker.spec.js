@@ -10,11 +10,10 @@ describe('Mocker2', () => {
   it("should be awesome1", () => {
 
     const m = mocker
-      .schema(OU, 50)
-      .schema(UserUm, 1)
+      .schema(User, 1)
       .build()
 
-    const result = m.db.get(UserUm)
+    const result = m.db.get(User)
     console.log(JSON.stringify(result, null, '  '))
 
   })
